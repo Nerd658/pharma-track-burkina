@@ -1,0 +1,64 @@
+
+.medicines-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    cursor: pointer;
+
+    &.sortable {
+      position: relative;
+
+      &.asc::after {
+        content: ' ▲';
+        font-size: 0.8em;
+      }
+
+      &.desc::after {
+        content: ' ▼';
+        font-size: 0.8em;
+      }
+    }
+  }
+
+  .low-stock {
+    background-color: #fff3cd;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      padding: 0.25rem 0.5rem;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .edit-btn {
+      background-color: #ffc107;
+
+      &:hover {
+        background-color: #e0a800;
+      }
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+
+      &:hover {
+        background-color: #c82333;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="sales-container">
+  <h1>Enregistrer une Vente</h1>
+  <form (ngSubmit)="recordSale()" class="sales-form">
+    <div class="form-group">
+      <label for="medicine">Médicament</label>
+      <select id="medicine" [(ngModel)]="selectedMedicineId" name="medicine" required>
+        <option [ngValue]="null" disabled>Sélectionner un médicament</option>
+        @for (medicine of medicines(); track medicine.id) {
+          <option [ngValue]="medicine.id">{{ medicine.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantité</label>
+      <input id="quantity" type="number" [(ngModel)]="quantity" name="quantity" required min="1">
+    </div>
+    <button type="submit" [disabled]="!selectedMedicineId || !quantity || isLoading()">
+      @if (isLoading()) {
+        <span class="spinner"></span>
+      }
+      Enregistrer la vente
+    </button>
+  </form>
+</div>
+

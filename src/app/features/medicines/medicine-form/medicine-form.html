@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="medicine-form">
+  <h2>{{ medicine() ? 'Modifier le médicament' : 'Ajouter un médicament' }}</h2>
+
+  <div class="form-group">
+    <label for="name">Nom</label>
+    <input id="name" formControlName="name">
+    @if (form.get('name')?.invalid && form.get('name')?.touched) {
+      <div class="error-message">Le nom est obligatoire.</div>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="category">Catégorie</label>
+    <input id="category" formControlName="category">
+  </div>
+
+  <div class="form-group">
+    <label for="price">Prix</label>
+    <input id="price" type="number" formControlName="price">
+    @if (form.get('price')?.invalid && form.get('price')?.touched) {
+      <div class="error-message">Le prix doit être supérieur à 0.</div>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="quantity">Quantité</label>
+    <input id="quantity" type="number" formControlName="quantity">
+  </div>
+
+  <div class="form-group">
+    <label for="expirationDate">Date d'expiration</label>
+    <input id="expirationDate" type="date" formControlName="expirationDate">
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid || isLoading()">
+      @if (isLoading()) {
+        <span class="spinner"></span>
+      }
+      Enregistrer
+    </button>
+    <button type="button" (click)="close.emit()">Annuler</button>
+  </div>
+</form>
+

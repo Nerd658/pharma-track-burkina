@@ -1,0 +1,24 @@
+<div class="sales-history-container">
+  <h1>Historique des Ventes</h1>
+  <table class="sales-history-table">
+    <thead>
+      <tr>
+        <th>Médicament</th>
+        <th>Quantité</th>
+        <th>Date</th>
+        <th>Prix Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (sale of salesDetails(); track sale.id) {
+        <tr>
+          <td>{{ sale.medicineName }}</td>
+          <td>{{ sale.quantity }}</td>
+          <td>{{ sale.date | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ sale.quantity * sale.medicinePrice | number:'1.2-2' }} FCFA</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

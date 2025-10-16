@@ -1,0 +1,27 @@
+<table class="medicines-table">
+  <thead>
+    <tr>
+      <th (click)="sort.emit('name')" [class.sortable]="true" [class.asc]="sortColumn() === 'name' && sortDirection() === 'asc'" [class.desc]="sortColumn() === 'name' && sortDirection() === 'desc'">Nom</th>
+      <th>Catégorie</th>
+      <th (click)="sort.emit('price')" [class.sortable]="true" [class.asc]="sortColumn() === 'price' && sortDirection() === 'asc'" [class.desc]="sortColumn() === 'price' && sortDirection() === 'desc'">Prix</th>
+      <th (click)="sort.emit('quantity')" [class.sortable]="true" [class.asc]="sortColumn() === 'quantity' && sortDirection() === 'asc'" [class.desc]="sortColumn() === 'quantity' && sortDirection() === 'desc'">Quantité</th>
+      <th (click)="sort.emit('expirationDate')" [class.sortable]="true" [class.asc]="sortColumn() === 'expirationDate' && sortDirection() === 'asc'" [class.desc]="sortColumn() === 'expirationDate' && sortDirection() === 'desc'">Date d'expiration</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (medicine of medicines(); track medicine.id) {
+      <tr [class.low-stock]="medicine.quantity < 10">
+        <td [innerHTML]="medicine.name | highlight:searchTerm()"></td>
+        <td>{{ medicine.category }}</td>
+        <td>{{ medicine.price }}</td>
+        <td>{{ medicine.quantity }}</td>
+        <td>{{ medicine.expirationDate }}</td>
+        <td class="actions">
+          <button class="edit-btn" (click)="edit.emit(medicine)">Modifier</button>
+          <button class="delete-btn" (click)="delete.emit(medicine.id)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

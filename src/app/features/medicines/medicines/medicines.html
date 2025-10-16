@@ -1,0 +1,18 @@
+<div class="medicines-container">
+  @if (showForm()) {
+    <app-medicine-form [medicine]="selectedMedicine()" [isLoading]="isLoading()" (submitting)="saveMedicine($event)" (close)="closeForm()" />
+  } @else {
+    <h1>Gestion des Médicaments</h1>
+    <button class="add-btn" (click)="addMedicine()">Ajouter un médicament</button>
+    <app-medicines-table 
+      [medicines]="paginatedMedicines()" 
+      [searchTerm]="searchTerm()"
+      [sortColumn]="sortColumn()" 
+      [sortDirection]="sortDirection()"
+      (sort)="sort($event)" 
+      (edit)="editMedicine($event)" 
+      (delete)="deleteMedicine($event)" />
+    <app-pagination [currentPage]="currentPage()" [itemsPerPage]="itemsPerPage()" [totalItems]="sortedMedicines().length" (pageChange)="onPageChange($event)" />
+  }
+</div>
+

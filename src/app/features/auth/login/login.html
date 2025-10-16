@@ -1,0 +1,23 @@
+<div class="login-container">
+  <form (ngSubmit)="login()" class="login-form">
+    <h2>Connexion</h2>
+    <div class="form-group">
+      <label for="username">Nom d'utilisateur</label>
+      <input id="username" type="text" [(ngModel)]="username" name="username" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" [(ngModel)]="password" name="password" required>
+    </div>
+    @if (errorMessage()) {
+      <div class="error-message">{{ errorMessage() }}</div>
+    }
+    <button type="submit" [disabled]="isLoading()">
+      @if (isLoading()) {
+        <span class="spinner"></span>
+      }
+      Se connecter
+    </button>
+  </form>
+</div>
+
