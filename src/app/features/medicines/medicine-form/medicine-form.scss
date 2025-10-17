@@ -1,67 +1,80 @@
-
-.medicine-form {
-  width: 100%;
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+:host {
+  display: block;
+  // The form container is animated in medicines.scss
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+.medicine-form-card {
+  // The card styles are global
 }
 
-.form-group {
-  margin-bottom: 1rem;
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
+  h3 {
+    margin: 0;
+    flex: 1;
+    padding-left: var(--spacing-unit);
   }
+}
 
-  input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+.btn-close {
+  // uses .btn-icon styles from medicines-table, should be global
+}
 
-  .error-message {
-    color: red;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-  }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-error {
+  color: var(--danger-color);
+  font-size: var(--font-size-small);
+  margin-top: var(--spacing-unit);
 }
 
 .form-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: var(--spacing-unit);
+  margin-top: calc(var(--spacing-unit) * 3);
+  padding-top: calc(var(--spacing-unit) * 2);
+  border-top: 1px solid var(--border-color);
 
-  button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-
-    &[type="submit"] {
-      background-color: #007bff;
-      color: white;
-
-      &:disabled {
-        background-color: #a0cfff;
-        cursor: not-allowed;
-      }
-    }
-
-    &[type="button"] {
-      background-color: #6c757d;
-      color: white;
-    }
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-unit);
   }
+}
+
+// Add btn-secondary to global styles or here
+.btn-secondary {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+
+  &:hover:not(:disabled) {
+    background-color: var(--background-color);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

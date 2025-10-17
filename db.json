@@ -1,183 +1,83 @@
 {
   "medicines": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Paracétamol 500mg",
       "category": "Analgésique",
       "price": 1500,
-      "quantity": 50,
+      "quantity": 3,
       "expirationDate": "2025-12-31"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Amoxicilline 250mg",
       "category": "Antibiotique",
       "price": 2500,
-      "quantity": 8,
+      "quantity": 32,
       "expirationDate": "2024-11-30"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Vitamine C 1000mg",
       "category": "Vitamine",
       "price": 3000,
-      "quantity": 200,
+      "quantity": 52,
       "expirationDate": "2026-06-30"
-    },
-    {
-      "id": 4,
-      "name": "Ibuprofène 400mg",
-      "category": "Anti-inflammatoire",
-      "price": 2000,
-      "quantity": 120,
-      "expirationDate": "2025-08-31"
-    },
-    {
-      "id": 5,
-      "name": "Doliprane 1000mg",
-      "category": "Analgésique",
-      "price": 1800,
-      "quantity": 75,
-      "expirationDate": "2026-02-28"
-    },
-    {
-      "id": 6,
-      "name": "Spasfon 80mg",
-      "category": "Antispasmodique",
-      "price": 2200,
-      "quantity": 90,
-      "expirationDate": "2025-07-31"
-    },
-    {
-      "id": 7,
-      "name": "Smecta",
-      "category": "Antidiarrhéique",
-      "price": 1200,
-      "quantity": 5,
-      "expirationDate": "2024-10-31"
-    },
-    {
-      "id": 8,
-      "name": "Gaviscon",
-      "category": "Antiacide",
-      "price": 2800,
-      "quantity": 60,
-      "expirationDate": "2025-05-31"
-    },
-    {
-      "id": 9,
-      "name": "Claversal 500mg",
-      "category": "Anti-inflammatoire",
-      "price": 4500,
-      "quantity": 30,
-      "expirationDate": "2026-01-31"
-    },
-    {
-      "id": 10,
-      "name": "Zyrtec 10mg",
-      "category": "Antihistaminique",
-      "price": 1900,
-      "quantity": 40,
-      "expirationDate": "2025-09-30"
-    },
-    {
-      "id": 11,
-      "name": "Maxilase",
-      "category": "Enzyme à visée anti-inflammatoire",
-      "price": 1600,
-      "quantity": 80,
-      "expirationDate": "2025-04-30"
-    },
-    {
-      "id": 12,
-      "name": "Tiorfan 100mg",
-      "category": "Antidiarrhéique",
-      "price": 2100,
-      "quantity": 25,
-      "expirationDate": "2024-12-31"
-    },
-    {
-      "id": 13,
-      "name": "Nurofen 400mg",
-      "category": "Anti-inflammatoire",
-      "price": 2300,
-      "quantity": 110,
-      "expirationDate": "2025-11-30"
-    },
-    {
-      "id": 14,
-      "name": "Efferalgan 1g",
-      "category": "Analgésique",
-      "price": 1700,
-      "quantity": 95,
-      "expirationDate": "2026-04-30"
-    },
-    {
-      "id": 15,
-      "name": "Magnésium B6",
-      "category": "Supplément minéral",
-      "price": 3200,
-      "quantity": 150,
-      "expirationDate": "2026-07-31"
-    },
-    {
-      "id": 16,
-      "name": "Betadine",
-      "category": "Antiseptique",
-      "price": 900,
-      "quantity": 2,
-      "expirationDate": "2024-09-30"
-    },
-    {
-      "id": 17,
-      "name": "Biafine",
-      "category": "Émollient et protecteur cutané",
-      "price": 1300,
-      "quantity": 70,
-      "expirationDate": "2025-06-30"
-    },
-    {
-      "id": 18,
-      "name": "Cetirizine 10mg",
-      "category": "Antihistaminique",
-      "price": 1800,
-      "quantity": 55,
-      "expirationDate": "2025-10-31"
-    },
-    {
-      "id": 19,
-      "name": "Imodium 2mg",
-      "category": "Antidiarrhéique",
-      "price": 1500,
-      "quantity": 15,
-      "expirationDate": "2025-03-31"
-    },
-    {
-      "id": 20,
-      "name": "Lysopaïne",
-      "category": "Antiseptique local",
-      "price": 1100,
-      "quantity": 65,
-      "expirationDate": "2025-01-31"
     }
   ],
   "sales": [
     {
-      "id": 1,
+      "id": "1",
       "medicineId": 1,
       "quantity": 2,
       "date": "2025-10-15T10:00:00.000Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "medicineId": 2,
       "quantity": 1,
       "date": "2025-10-15T11:30:00.000Z"
+    },
+    {
+      "id": "7a42",
+      "medicineId": "2",
+      "quantity": 45,
+      "date": "2025-10-17T19:58:34.941Z"
+    },
+    {
+      "id": "575d",
+      "medicineId": "2",
+      "quantity": 4,
+      "date": "2025-10-17T20:04:48.497Z"
+    },
+    {
+      "id": "b1ae",
+      "medicineId": "3",
+      "quantity": 852,
+      "date": "2025-10-17T20:04:52.870Z"
+    },
+    {
+      "id": "1fe7",
+      "medicineId": "2",
+      "quantity": 9,
+      "date": "2025-10-17T20:44:18.136Z"
+    },
+    {
+      "id": "dc84",
+      "medicineId": "1",
+      "quantity": 4,
+      "date": "2025-10-17T20:44:27.482Z"
+    },
+    {
+      "id": "2c4b",
+      "medicineId": "1",
+      "quantity": 143,
+      "date": "2025-10-17T20:44:58.761Z"
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
       "password": "password",
       "token": "fake-admin-token"

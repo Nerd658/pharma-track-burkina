@@ -6,12 +6,14 @@ import { SalesService, Sale } from '../../sales/sales';
 import { SearchService } from '../../../core';
 import { Router } from '@angular/router';
 
+declare var feather: any;
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.scss']
+  styleUrls: []
 })
 export class DashboardComponent implements AfterViewInit {
   private medicinesService = inject(MedicinesService);
@@ -24,20 +26,18 @@ export class DashboardComponent implements AfterViewInit {
   medicines = this.medicinesService.medicines;
   sales = signal<Sale[]>([]);
 
-  lowStockMedicines = computed(() => this.medicines().filter(m => m.quantity < 10));
-
+  // Stats réactives. Se recalculent automatiquement si `medicines` ou `sales` changent.
+  lowStockMedicines = computed(() => this.medicines().filter(m => m.quantity < 5));
   todaySales = computed(() => {
     const today = new Date().toISOString().split('T')[0];
     return this.sales().filter(s => s.date.startsWith(today));
   });
-
   totalRevenueToday = computed(() => {
     return this.todaySales().reduce((total, sale) => {
       const medicine = this.medicines().find(m => m.id === sale.medicineId);
       return total + (medicine ? medicine.price * sale.quantity : 0);
     }, 0);
   });
-
   totalSalesToday = computed(() => this.todaySales().length);
 
   constructor() {
@@ -45,28 +45,47 @@ export class DashboardComponent implements AfterViewInit {
     this.salesService.getSales().subscribe(sales => this.sales.set(sales));
   }
 
+  // Navigue vers la page des médicaments en activant le filtre "stock faible".
   viewLowStock(): void {
     this.searchService.setFilter('low-stock');
     this.router.navigate(['/medicaments']);
   }
 
+  // Initialisation des librairies tierces (Feather, Chart.js) après le rendu de la vue.
   ngAfterViewInit() {
+    feather.replace();
     this.createSalesChart();
   }
 
   private createSalesChart() {
     const weeklySales = this.getWeeklySales();
     new Chart(this.salesChart.nativeElement, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: Object.keys(weeklySales),
         datasets: [{
-          label: 'Ventes par semaine',
+          label: 'Ventes journalières',
           data: Object.values(weeklySales),
-          backgroundColor: 'rgba(0, 123, 255, 0.5)',
-          borderColor: 'rgba(0, 123, 255, 1)',
-          borderWidth: 1
+          backgroundColor: 'rgba(99, 102, 241, 0.2)',
+          borderColor: 'rgba(99, 102, 241, 1)',
+          borderWidth: 2,
+          tension: 0.3,
+          fill: true
         }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
       }
     });
   }

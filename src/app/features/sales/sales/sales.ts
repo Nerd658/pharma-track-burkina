@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs';
@@ -17,23 +17,47 @@ export class SalesComponent {
   private medicinesService = inject(MedicinesService);
 
   medicines = this.medicinesService.medicines;
-  selectedMedicineId: number | null = null;
-  quantity: number | null = null;
   isLoading = signal(false);
+
+  // On utilise des signaux pour gérer les entrées du formulaire de manière réactive.
+  selectedMedicineId = signal<number | null>(null);
+  quantity = signal<number | null>(null);
+
+  // Un signal `computed` qui dérive le médicament complet à partir de l'ID sélectionné.
+  selectedMedicine = computed(() => {
+    const medId = this.selectedMedicineId();
+    if (!medId) {
+      return null;
+    }
+    return this.medicines().find(m => m.id === medId);
+  });
+
+  // Un autre `computed` pour calculer le total de la vente en temps réel.
+  saleTotal = computed(() => {
+    const medicine = this.selectedMedicine();
+    const qty = this.quantity();
+    if (medicine && qty && qty > 0) {
+      return medicine.price * qty;
+    }
+    return 0;
+  });
 
   constructor() {
     this.medicinesService.getMedicines().subscribe();
   }
 
   recordSale(): void {
-    if (this.selectedMedicineId && this.quantity) {
+    const medId = this.selectedMedicineId();
+    const qty = this.quantity();
+
+    if (medId && qty) {
       this.isLoading.set(true);
-      this.salesService.addSale({ medicineId: this.selectedMedicineId, quantity: this.quantity }).pipe(
+      this.salesService.addSale({ medicineId: medId, quantity: qty }).pipe(
         finalize(() => this.isLoading.set(false))
       ).subscribe(() => {
-        this.selectedMedicineId = null;
-        this.quantity = null;
-        // Optionally, add a success message
+        // Réinitialise le formulaire après la vente
+        this.selectedMedicineId.set(null);
+        this.quantity.set(null);
       });
     }
   }

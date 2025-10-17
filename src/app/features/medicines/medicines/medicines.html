@@ -1,18 +1,51 @@
-<div class="medicines-container">
-  @if (showForm()) {
-    <app-medicine-form [medicine]="selectedMedicine()" [isLoading]="isLoading()" (submitting)="saveMedicine($event)" (close)="closeForm()" />
-  } @else {
-    <h1>Gestion des Médicaments</h1>
-    <button class="add-btn" (click)="addMedicine()">Ajouter un médicament</button>
-    <app-medicines-table 
-      [medicines]="paginatedMedicines()" 
-      [searchTerm]="searchTerm()"
-      [sortColumn]="sortColumn()" 
-      [sortDirection]="sortDirection()"
-      (sort)="sort($event)" 
-      (edit)="editMedicine($event)" 
-      (delete)="deleteMedicine($event)" />
-    <app-pagination [currentPage]="currentPage()" [itemsPerPage]="itemsPerPage()" [totalItems]="sortedMedicines().length" (pageChange)="onPageChange($event)" />
-  }
+<div class="medicines-page">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Gestion des Médicaments</h1>
+      <p>Ajoutez, modifiez et suivez votre inventaire de médicaments.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="addMedicine()">
+        <i data-feather="plus"></i>
+        <span>Ajouter un médicament</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="card medicines-card">
+    <div class="card-controls">
+      <p>Liste de tous les médicaments enregistrés.</p>
+    </div>
+    <div class="table-container">
+      <app-medicines-table
+        [medicines]="paginatedMedicines()"
+        [searchTerm]="searchTerm()"
+        [sortColumn]="sortColumn()"
+        [sortDirection]="sortDirection()"
+        (sort)="sort($event)"
+        (edit)="editMedicine($event)"
+        (delete)="deleteMedicine($event)"
+      />
+    </div>
+    <div class="card-footer">
+      <app-pagination
+        [currentPage]="currentPage()"
+        [itemsPerPage]="itemsPerPage()"
+        [totalItems]="sortedMedicines().length"
+        (pageChange)="onPageChange($event)"
+      />
+    </div>
+  </div>
 </div>
 
+@if (showForm()) {
+  <div class="form-overlay">
+    <app-medicine-form
+      class="form-container"
+      [medicine]="selectedMedicine()"
+      [isLoading]="isLoading()"
+      (submitting)="saveMedicine($event)"
+      (close)="closeForm()"
+    />
+  </div>
+}

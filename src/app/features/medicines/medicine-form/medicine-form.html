@@ -1,45 +1,58 @@
-<form [formGroup]="form" (ngSubmit)="submit()" class="medicine-form">
-  <h2>{{ medicine() ? 'Modifier le médicament' : 'Ajouter un médicament' }}</h2>
-
-  <div class="form-group">
-    <label for="name">Nom</label>
-    <input id="name" formControlName="name">
-    @if (form.get('name')?.invalid && form.get('name')?.touched) {
-      <div class="error-message">Le nom est obligatoire.</div>
-    }
-  </div>
-
-  <div class="form-group">
-    <label for="category">Catégorie</label>
-    <input id="category" formControlName="category">
-  </div>
-
-  <div class="form-group">
-    <label for="price">Prix</label>
-    <input id="price" type="number" formControlName="price">
-    @if (form.get('price')?.invalid && form.get('price')?.touched) {
-      <div class="error-message">Le prix doit être supérieur à 0.</div>
-    }
-  </div>
-
-  <div class="form-group">
-    <label for="quantity">Quantité</label>
-    <input id="quantity" type="number" formControlName="quantity">
-  </div>
-
-  <div class="form-group">
-    <label for="expirationDate">Date d'expiration</label>
-    <input id="expirationDate" type="date" formControlName="expirationDate">
-  </div>
-
-  <div class="form-actions">
-    <button type="submit" [disabled]="form.invalid || isLoading()">
-      @if (isLoading()) {
-        <span class="spinner"></span>
-      }
-      Enregistrer
+<div class="card medicine-form-card">
+  <div class="card-header">
+    <i data-feather="edit-3"></i>
+    <h3>{{ medicine() ? 'Modifier le médicament' : 'Ajouter un médicament' }}</h3>
+    <button class="btn-icon btn-close" (click)="close.emit()">
+      <i data-feather="x"></i>
     </button>
-    <button type="button" (click)="close.emit()">Annuler</button>
   </div>
-</form>
 
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name" class="form-label">Nom du médicament</label>
+          <input id="name" type="text" class="form-control" formControlName="name">
+          @if (form.get('name')?.invalid && form.get('name')?.touched) {
+            <div class="form-error">Le nom est obligatoire.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="category" class="form-label">Catégorie</label>
+          <input id="category" type="text" class="form-control" formControlName="category">
+        </div>
+
+        <div class="form-group">
+          <label for="price" class="form-label">Prix (FCFA)</label>
+          <input id="price" type="number" class="form-control" formControlName="price">
+           @if (form.get('price')?.invalid && form.get('price')?.touched) {
+            <div class="form-error">Le prix doit être supérieur à 0.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="quantity" class="form-label">Quantité en stock</label>
+          <input id="quantity" type="number" class="form-control" formControlName="quantity">
+        </div>
+
+        <div class="form-group full-width">
+          <label for="expirationDate" class="form-label">Date d'expiration</label>
+          <input id="expirationDate" type="date" class="form-control" formControlName="expirationDate">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="close.emit()">Annuler</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid || isLoading()">
+          @if (isLoading()) {
+            <span class="spinner"></span>
+            <span>Enregistrement...</span>
+          } @else {
+            <span>Enregistrer</span>
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
