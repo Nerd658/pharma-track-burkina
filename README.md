@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-readme
-=======
 # PharmaTrack Burkina Faso 🇧🇫
 
 Ce dépôt contient le code de **PharmaTrack Burkina**, une petite application que nous avons conçue pour aider les petites pharmacies et dépôts pharmaceutiques, notamment en zone rurale au Burkina Faso. L'idée est de proposer un outil de gestion simple, moderne et agréable à utiliser pour suivre les stocks, éviter les ruptures et voir l'historique des ventes.
@@ -109,4 +106,3 @@ Cette commande va compiler et optimiser l'application. Les fichiers finaux, stat
 
 Vous trouverez dans le dossier `/captures` des captures d'écran des différentes pages de l'application. Cela vous donnera un aperçu rapide de l'interface et de l'expérience utilisateur.
 
->>>>>>> master
