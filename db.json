@@ -1,0 +1,86 @@
+{
+  "medicines": [
+    {
+      "id": "1",
+      "name": "Paracétamol 500mg",
+      "category": "Analgésique",
+      "price": 1500,
+      "quantity": 3,
+      "expirationDate": "2025-12-31"
+    },
+    {
+      "id": "2",
+      "name": "Amoxicilline 250mg",
+      "category": "Antibiotique",
+      "price": 2500,
+      "quantity": 32,
+      "expirationDate": "2024-11-30"
+    },
+    {
+      "id": "3",
+      "name": "Vitamine C 1000mg",
+      "category": "Vitamine",
+      "price": 3000,
+      "quantity": 52,
+      "expirationDate": "2026-06-30"
+    }
+  ],
+  "sales": [
+    {
+      "id": "1",
+      "medicineId": 1,
+      "quantity": 2,
+      "date": "2025-10-15T10:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "medicineId": 2,
+      "quantity": 1,
+      "date": "2025-10-15T11:30:00.000Z"
+    },
+    {
+      "id": "7a42",
+      "medicineId": "2",
+      "quantity": 45,
+      "date": "2025-10-17T19:58:34.941Z"
+    },
+    {
+      "id": "575d",
+      "medicineId": "2",
+      "quantity": 4,
+      "date": "2025-10-17T20:04:48.497Z"
+    },
+    {
+      "id": "b1ae",
+      "medicineId": "3",
+      "quantity": 852,
+      "date": "2025-10-17T20:04:52.870Z"
+    },
+    {
+      "id": "1fe7",
+      "medicineId": "2",
+      "quantity": 9,
+      "date": "2025-10-17T20:44:18.136Z"
+    },
+    {
+      "id": "dc84",
+      "medicineId": "1",
+      "quantity": 4,
+      "date": "2025-10-17T20:44:27.482Z"
+    },
+    {
+      "id": "2c4b",
+      "medicineId": "1",
+      "quantity": 143,
+      "date": "2025-10-17T20:44:58.761Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "password",
+      "token": "fake-admin-token"
+    }
+  ]
+}

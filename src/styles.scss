@@ -1,0 +1,189 @@
+/*
+ * PharmaTrack Burkina - Global Stylesheet
+ */
+
+// 1. Design System (Variables)
+// ==========================================================================
+
+:root {
+  // Palette
+  --primary-color: #4a90e2; // A modern, friendly blue
+  --primary-color-dark: #357abd;
+  --secondary-color: #50e3c2; // A vibrant accent for success states
+  --text-color: #333;
+  --text-color-light: #777;
+  --background-color: #f4f7fa;
+  --surface-color: #ffffff;
+  --border-color: #e0e6ed;
+  --danger-color: #d0021b;
+  --danger-color-dark: #b40218; // Darker version of danger color
+  --warning-color: #f5a623;
+
+  // Typography
+  --font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 20px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+
+  // Spacing & Layout
+  --spacing-unit: 8px;
+  --container-max-width: 1200px;
+  --border-radius: 6px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+// 2. Base & Reset
+// ==========================================================================
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base);
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--primary-color-dark);
+  }
+}
+
+// 3. Generic Components & Utilities
+// ==========================================================================
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 3);
+}
+
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: calc(var(--spacing-unit) * 3);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+
+  &:hover:not(:disabled) {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+  }
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+  border-color: var(--danger-color);
+
+  &:hover:not(:disabled) {
+    background-color: var(--danger-color-dark);
+    border-color: var(--danger-color-dark);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+
+  &:hover:not(:disabled) {
+    background-color: var(--background-color);
+  }
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-unit);
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+
+  i {
+    width: 18px;
+    height: 18px;
+    color: var(--text-color-light);
+  }
+
+  &:hover {
+    background-color: var(--background-color);
+  }
+}
+
+
+// Forms
+.form-group {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.form-label {
+  display: block;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-unit);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: calc(var(--spacing-unit) * 1.5);
+  font-size: var(--font-size-base);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--surface-color);
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+  }
+}

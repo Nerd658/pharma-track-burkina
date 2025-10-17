@@ -1,0 +1,64 @@
+<div class="dashboard-grid">
+  <div class="dashboard-header">
+    <h1>Tableau de Bord</h1>
+    <p>Aperçu en temps réel de votre activité.</p>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="stat-card card">
+    <div class="stat-card__header">
+      <i data-feather="dollar-sign"></i>
+      <h3>Chiffre d'affaires (Total)</h3>
+    </div>
+    <div class="stat-card__body">
+      <p class="stat-card__value">{{ totalRevenueToday() | number:'1.0-0' }} FCFA</p>
+    </div>
+  </div>
+
+  <div class="stat-card card">
+    <div class="stat-card__header">
+      <i data-feather="shopping-cart"></i>
+      <h3>Ventes (Aujourd'hui)</h3>
+    </div>
+    <div class="stat-card__body">
+      <p class="stat-card__value">{{ totalSalesToday() }}</p>
+    </div>
+  </div>
+
+  <!-- Low Stock Alert -->
+  <div class="card low-stock-card" (click)="viewLowStock()" [class.is-clickable]="lowStockMedicines().length > 0">
+    <div class="card-header">
+      <i data-feather="alert-triangle"></i>
+      <h3>Médicaments en stock faible</h3>
+    </div>
+    <div class="card-body">
+      @if (lowStockMedicines().length > 0) {
+        <ul class="low-stock-list">
+          @for (medicine of lowStockMedicines(); track medicine.id) {
+            <li>
+              <span class="medicine-name">{{ medicine.name }}</span>
+              <span class="medicine-quantity">{{ medicine.quantity }} unités</span>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="no-stock-message">
+          <i data-feather="check-circle"></i>
+          <span>Aucun médicament en stock faible.</span>
+        </p>
+      }
+    </div>
+  </div>
+
+  <!-- Sales Chart -->
+  <div class="card chart-card">
+    <div class="card-header">
+      <i data-feather="bar-chart-2"></i>
+      <h3>Évolution des ventes</h3>
+    </div>
+    <div class="card-body">
+      <canvas #salesChart></canvas>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,54 @@
+<header class="header">
+  <div class="nav-container">
+    <a class="header__logo" routerLink="/">
+      <i data-feather="activity"></i>
+      <span>PharmaTrack</span>
+    </a>
+
+    <nav class="header__nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <i data-feather="home"></i>
+        <span>Dashboard</span>
+      </a>
+      <a routerLink="/medicaments" routerLinkActive="active">
+        <i data-feather="package"></i>
+        <span>Médicaments</span>
+      </a>
+      <div class="nav-item dropdown">
+        <a href="#" (click)="$event.preventDefault()" class="dropdown-toggle">
+          <i data-feather="shopping-cart"></i>
+          <span>Ventes</span>
+          <i data-feather="chevron-down" class="dropdown-chevron"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a routerLink="/ventes/enregistrer" routerLinkActive="active">Enregistrer une vente</a>
+          <a routerLink="/ventes/historique" routerLinkActive="active">Historique des ventes</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="header__actions">
+      <div class="search-bar">
+        <i data-feather="search"></i>
+        <input type="text" placeholder="Rechercher..." #searchInput (input)="onSearch(searchInput.value)">
+      </div>
+      @if (isAuthenticated()) {
+        <button class="btn btn-logout" (click)="logout()">
+          <i data-feather="log-out"></i>
+          <span>Déconnexion</span>
+        </button>
+      } @else {
+        <a class="btn btn-login" routerLink="/login">
+          <i data-feather="log-in"></i>
+          <span>Connexion</span>
+        </a>
+      }
+    </div>
+  </div>
+</header>
+
+<main class="main-content">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>

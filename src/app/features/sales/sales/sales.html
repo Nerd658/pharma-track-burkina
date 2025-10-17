@@ -1,0 +1,56 @@
+<div class="sales-container">
+  <h1>Enregistrer une Vente</h1>
+  <form (ngSubmit)="recordSale()" class="sales-form card">
+    <div class="form-group">
+      <label for="medicine" class="form-label">Médicament</label>
+      <!-- On utilise la syntaxe [ngModel] et (ngModelChange) pour lier aux signaux -->
+      <select id="medicine" class="form-control" [ngModel]="selectedMedicineId()" (ngModelChange)="selectedMedicineId.set($event)" name="medicine" required>
+        <option [ngValue]="null" disabled>Sélectionner un médicament</option>
+        @for (medicine of medicines(); track medicine.id) {
+          <option [ngValue]="medicine.id" [disabled]="medicine.quantity === 0">
+            {{ medicine.name }} (Stock: {{ medicine.quantity }})
+          </option>
+        }
+      </select>
+    </div>
+
+    @if(selectedMedicine(); as medicine) {
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="quantity" class="form-label">Quantité</label>
+          <input id="quantity" type="number" class="form-control" [ngModel]="quantity()" (ngModelChange)="quantity.set($event)" name="quantity" required min="1" [max]="medicine.quantity">
+          @if (quantity() && quantity()! > medicine.quantity) {
+            <div class="form-error">La quantité ne peut pas dépasser le stock disponible ({{ medicine.quantity }}).</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Prix Unitaire</label>
+          <div class="form-static-value">{{ medicine.price | number:'1.0-0' }} FCFA</div>
+        </div>
+      </div>
+
+      @if(saleTotal() > 0) {
+        <div class="sale-total">
+          <span class="total-label">Total de la Vente</span>
+          <span class="total-amount">{{ saleTotal() | number:'1.0-0' }} FCFA</span>
+        </div>
+      }
+    }
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="!selectedMedicineId() || !quantity() || quantity()! <= 0 || isLoading() || (selectedMedicine() && quantity()! > selectedMedicine()!.quantity)">
+        @if (isLoading()) {
+          <span class="spinner"></span>
+          <span>Enregistrement...</span>
+        } @else {
+          <span>Enregistrer la vente</span>
+        }
+      </button>
+    </div>
+
+     @if (selectedMedicine()?.quantity === 0) {
+        <div class="alert alert-warning">Ce produit est en rupture de stock.</div>
+      }
+  </form>
+</div>

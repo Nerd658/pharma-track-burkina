@@ -1,0 +1,55 @@
+<div class="table-wrapper">
+  <table class="pharma-table">
+    <thead>
+      <tr>
+        <th (click)="sort.emit('name')" class="sortable" [class.asc]="sortColumn() === 'name' && sortDirection() === 'asc'" [class.desc]="sortColumn() === 'name' && sortDirection() === 'desc'">
+          <span>Nom</span>
+          <i class="sort-icon" data-feather="chevron-down"></i>
+        </th>
+        <th>Catégorie</th>
+        <th (click)="sort.emit('price')" class="sortable" [class.asc]="sortColumn() === 'price' && sortDirection() === 'asc'" [class.desc]="sortColumn() === 'price' && sortDirection() === 'desc'">
+          <span>Prix</span>
+          <i class="sort-icon" data-feather="chevron-down"></i>
+        </th>
+        <th (click)="sort.emit('quantity')" class="sortable" [class.asc]="sortColumn() === 'quantity' && sortDirection() === 'asc'" [class.desc]="sortColumn() === 'quantity' && sortDirection() === 'desc'">
+          <span>Quantité</span>
+          <i class="sort-icon" data-feather="chevron-down"></i>
+        </th>
+        <th (click)="sort.emit('expirationDate')" class="sortable" [class.asc]="sortColumn() === 'expirationDate' && sortDirection() === 'asc'" [class.desc]="sortColumn() === 'expirationDate' && sortDirection() === 'desc'">
+          <span>Date d'expiration</span>
+          <i class="sort-icon" data-feather="chevron-down"></i>
+        </th>
+        <th class="actions-header">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (medicine of medicines(); track medicine.id) {
+        <tr [class.low-stock]="medicine.quantity < 10">
+          <td data-label="Nom" [innerHTML]="medicine.name | highlight:searchTerm()"></td>
+          <td data-label="Catégorie">{{ medicine.category }}</td>
+          <td data-label="Prix">{{ medicine.price | number:'1.0-0' }} FCFA</td>
+          <td data-label="Quantité">
+            <span class="quantity-badge">{{ medicine.quantity }}</span>
+          </td>
+          <td data-label="Date d'expiration">{{ medicine.expirationDate | date:'dd/MM/yyyy' }}</td>
+          <td data-label="Actions" class="actions-cell">
+            <button class="btn-icon btn-edit" (click)="edit.emit(medicine)">
+              <i data-feather="edit"></i>
+            </button>
+            <button class="btn-icon btn-delete" (click)="delete.emit(medicine.id)">
+              <i data-feather="trash-2"></i>
+            </button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="empty-state">
+            <i data-feather="info"></i>
+            <p>Aucun médicament trouvé.</p>
+            <span>Essayez d'ajuster votre recherche ou d'ajouter un nouveau médicament.</span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  // The form container is animated in medicines.scss
+}
+
+.medicine-form-card {
+  // The card styles are global
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0;
+    flex: 1;
+    padding-left: var(--spacing-unit);
+  }
+}
+
+.btn-close {
+  // uses .btn-icon styles from medicines-table, should be global
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-error {
+  color: var(--danger-color);
+  font-size: var(--font-size-small);
+  margin-top: var(--spacing-unit);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-unit);
+  margin-top: calc(var(--spacing-unit) * 3);
+  padding-top: calc(var(--spacing-unit) * 2);
+  border-top: 1px solid var(--border-color);
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-unit);
+  }
+}
+
+// Add btn-secondary to global styles or here
+.btn-secondary {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+
+  &:hover:not(:disabled) {
+    background-color: var(--background-color);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
